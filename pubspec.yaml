@@ -1,0 +1,59 @@
+name: flut_mart
+description: "E-commerce App with Flutter."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.1
+
+dependencies:
+  carousel_slider: ^5.0.0
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  http: ^1.2.2
+  jwt_decoder: ^2.0.1
+  lottie: ^3.1.2
+  shared_preferences: ^2.3.2
+  go_router: ^14.2.7
+  provider: ^6.1.2
+  toastification: ^2.3.0
+  flutter_typeahead: ^5.2.0
+  geocoding: ^3.0.0
+  geolocator: ^12.0.0
+  geolocator_android: 4.5.5
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  flutter_launcher_icons: ^0.14.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icon.png"
+  image_path_android: "assets/images/icon.png"
+  adaptive_icon_background: "assets/images/icon.png"
+  adaptive_icon_foreground: "assets/images/icon.png"
+  web:
+    generate: true
+    image_path: "assets/images/icon.png"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/animations/
+    - assets/images/
+    - assets/fonts/
+
+  fonts:
+    - family: SUSE
+      fonts:
+        - asset: assets/fonts/SUSE-Regular.ttf
+        - asset: assets/fonts/SUSE-Bold.ttf
+          weight: 700

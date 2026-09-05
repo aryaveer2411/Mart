@@ -1,0 +1,93 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter analyze lib/services/category.service.dart lib/services/product.service.dart lib/utils/constants/dummy_data.constant.dart
+
+## exception
+
+_Exception: Exception: analysis server exited with code 64 and output:
+[stderr]     --enable-analytics      Enable analytics.
+[stderr]     --disable-analytics     Disable analytics.
+[stderr]     --suppress-analytics    Disallow analytics for this `dart *` run without changing the analytics configuration.
+[stderr] -h, --help                  Print this usage information.
+[stderr] 
+[stderr] Available commands:
+[stderr]   analyze    Analyze Dart code in a directory.
+[stderr]   compile    Compile Dart to various formats.
+[stderr]   create     Create a new Dart project.
+[stderr]   devtools   Open DevTools (optionally connecting to an existing application).
+[stderr]   doc        Generate API documentation for Dart projects.
+[stderr]   fix        Apply automated fixes to Dart source code.
+[stderr]   format     Idiomatically format Dart source code.
+[stderr]   info       Show diagnostic information about the installed tooling.
+[stderr]   pub        Work with packages.
+[stderr]   run        Run a Dart program.
+[stderr]   test       Run tests for a project.
+[stderr] 
+[stderr] Run "dart help <command>" for more information about a command.
+[stderr] See https://dart.dev/tools/dart-tool for detailed documentation.
+
+```
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, 3.32.7, on macOS 15.5 24F74 darwin-arm64, locale en-US) [157ms]
+    • Flutter version 3.32.7 on channel stable at /Users/aryaveer/flutter/flutter
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision d7b523b356 (1 year, 2 months ago), 2025-07-15 17:03:46 -0700
+    • Engine revision 39d6d6e699
+    • Dart version 3.8.1
+    • DevTools version 2.45.1
+
+[!] Android toolchain - develop for Android devices (Android SDK version 36.0.0) [147ms]
+    • Android SDK at /Users/aryaveer/Library/Android/sdk
+    • Platform android-37.0, build-tools 36.0.0
+    • Java binary at: /Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home/bin/java
+      This JDK is specified in your Flutter configuration.
+      To change the current JDK, run: `flutter config --jdk-dir="path/to/jdk"`.
+    • Java version Java(TM) SE Runtime Environment (build 21.0.9+7-LTS-338)
+    ✗ Android license status unknown.
+      Run `flutter doctor --android-licenses` to accept the SDK licenses.
+      See https://flutter.dev/to/macos-android-setup for more details.
+
+[✗] Xcode - develop for iOS and macOS [50ms]
+    ✗ Xcode installation is incomplete; a full installation is necessary for iOS and macOS development.
+      Download at: https://developer.apple.com/xcode/
+      Or install Xcode via the App Store.
+      Once installed, run:
+        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+        sudo xcodebuild -runFirstLaunch
+    ✗ CocoaPods not installed.
+        CocoaPods is a package manager for iOS or macOS platform code.
+        Without CocoaPods, plugins will not work on iOS or macOS.
+        For more info, see https://flutter.dev/to/platform-plugins
+      For installation instructions, see https://guides.cocoapods.org/using/getting-started.html#installation
+
+[✗] Chrome - develop for the web (Cannot find Chrome executable at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome) [27ms]
+    ! Cannot find Chrome. Try setting CHROME_EXECUTABLE to a Chrome executable.
+
+[✓] Android Studio (version 2026.1) [27ms]
+    • Android Studio at /Applications/Android Studio.app/Contents
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 25.0.3+-15898627-b508.16)
+
+[✓] VS Code (version 1.122.1) [27ms]
+    • VS Code at /Applications/Visual Studio Code.app/Contents
+    • Flutter extension version 3.142.0
+
+[✓] Connected device (2 available) [119ms]
+    • sdk gphone16k arm64 (mobile) • emulator-5554 • android-arm64 • Android 16 (API 36) (emulator)
+    • macOS (desktop)              • macos         • darwin-arm64  • macOS 15.5 24F74 darwin-arm64
+
+[✓] Network resources [478ms]
+    • All expected network resources are available.
+
+! Doctor found issues in 3 categories.
+```

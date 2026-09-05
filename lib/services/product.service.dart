@@ -3,80 +3,59 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flut_mart/models/product.dart';
 
-import 'package:flut_mart/utils/constants/endpoint.constant.dart';
+import 'package:flut_mart/utils/constants/dummy_data.constant.dart';
 
 class ProductApiService {
   final http.Client client;
 
-  static const baseUrl = Endpoint.baseUrl;
-  static const getProducts = Endpoint.getProducts;
-
   ProductApiService({http.Client? client}) : client = client ?? http.Client();
 
   Future<List<Product>> getAllProducts(String searchQuery) async {
-    final response = await client.get(Uri.parse(getProducts));
+    final Products products = productFromJson(DummyData.productsJson);
+    final List<Product> allProducts = [];
 
-    if (response.statusCode == 200) {
-      final Products products = productFromJson(response.body);
-      final List<Product> allProducts = [];
-
-      if (searchQuery != '') {
-        allProducts.addAll(products.products.where((product) =>
-            product.name.toLowerCase().contains(searchQuery.toLowerCase())));
-      } else {
-        allProducts.addAll(products.products);
-      }
-
-      return allProducts;
+    if (searchQuery != '') {
+      allProducts.addAll(products.products.where((product) =>
+          product.name.toLowerCase().contains(searchQuery.toLowerCase())));
     } else {
-      throw Exception(response.body);
+      allProducts.addAll(products.products);
     }
+
+    return allProducts;
   }
 
   Future<Product> getProductById(String id) async {
-    final response = await client.get(Uri.parse(getProducts));
+    final Products products = productFromJson(DummyData.productsJson);
 
-    if (response.statusCode == 200) {
-      final Products products = productFromJson(response.body);
-
-      return products.products
-          .firstWhere((product) => product.id.toString() == id);
-    } else {
-      throw Exception(response.body);
-    }
+    return products.products
+        .firstWhere((product) => product.id.toString() == id);
   }
 
   Future<List<Product>> getProductsByCategoryId(
       int categoryId, int page, int sort) async {
-    final response = await client.get(Uri.parse(getProducts));
+    final Products products = productFromJson(DummyData.productsJson);
 
     await Future.delayed(const Duration(milliseconds: 200));
 
-    if (response.statusCode == 200) {
-      final Products products = productFromJson(response.body);
+    List<Product> allProducts = products
+        .where((product) => product.categoryId == categoryId)
+        .toList();
 
-      List<Product> allProducts = products
-          .where((product) => product.categoryId == categoryId)
-          .toList();
-
-      if (sort == 0) {
-        allProducts.sort(
-            (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
-      } else if (sort == 1) {
-        allProducts.sort(
-            (a, b) => b.name.toLowerCase().compareTo(a.name.toLowerCase()));
-      } else if (sort == 2) {
-        allProducts
-            .sort((a, b) => a.discountedPrice.compareTo(b.discountedPrice));
-      } else if (sort == 3) {
-        allProducts
-            .sort((a, b) => b.discountedPrice.compareTo(a.discountedPrice));
-      }
-
-      return allProducts.skip((page - 1) * 20).take(20).toList();
-    } else {
-      throw Exception(response.body);
+    if (sort == 0) {
+      allProducts.sort(
+          (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+    } else if (sort == 1) {
+      allProducts.sort(
+          (a, b) => b.name.toLowerCase().compareTo(a.name.toLowerCase()));
+    } else if (sort == 2) {
+      allProducts
+          .sort((a, b) => a.discountedPrice.compareTo(b.discountedPrice));
+    } else if (sort == 3) {
+      allProducts
+          .sort((a, b) => b.discountedPrice.compareTo(a.discountedPrice));
     }
+
+    return allProducts.skip((page - 1) * 20).take(20).toList();
   }
 
   Future<void> addToRecentlyViewed(String productId) async {

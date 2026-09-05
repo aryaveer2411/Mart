@@ -145,6 +145,8 @@ class _ProductCardState extends State<ProductCard> {
             ),
             Text(
               widget.product.name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
                     color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.bold,
@@ -152,6 +154,8 @@ class _ProductCardState extends State<ProductCard> {
             ),
             Text(
               widget.product.description,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Colors.grey.shade500,
                   ),
@@ -161,33 +165,41 @@ class _ProductCardState extends State<ProductCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '\$${widget.product.discountedPrice.toStringAsFixed(2)}',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                    widget.product.discount > 0
-                        ? Text(
-                            '\$${widget.product.price}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                  color: Colors.grey.shade500,
-                                  decoration: TextDecoration.lineThrough,
-                                  decorationColor:
-                                      Theme.of(context).dividerColor,
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '\$${widget.product.discountedPrice.toStringAsFixed(2)}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                            Theme.of(context).textTheme.titleLarge!.copyWith(
+                                  color: Theme.of(context).colorScheme.secondary,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                          )
-                        : const SizedBox(),
-                  ],
+                      ),
+                      widget.product.discount > 0
+                          ? Text(
+                              '\$${widget.product.price}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                    color: Colors.grey.shade500,
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationColor:
+                                        Theme.of(context).dividerColor,
+                                  ),
+                            )
+                          : const SizedBox(),
+                    ],
+                  ),
                 ),
                 Row(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     IconButton(
@@ -201,6 +213,8 @@ class _ProductCardState extends State<ProductCard> {
                         size: 25,
                       ),
                       padding: const EdgeInsets.all(0),
+                      constraints: const BoxConstraints(),
+                      visualDensity: VisualDensity.compact,
                       onPressed: _toggleCart,
                     ),
                     IconButton(
@@ -212,6 +226,8 @@ class _ProductCardState extends State<ProductCard> {
                         size: 25,
                       ),
                       padding: const EdgeInsets.all(0),
+                      constraints: const BoxConstraints(),
+                      visualDensity: VisualDensity.compact,
                       onPressed: _toggleFavorite,
                     ),
                   ],
